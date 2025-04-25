@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios, { Axios } from 'axios'
 import Navbar from './Navbar';
+import parse from 'html-react-parser';
+
 function RecipeDetailed() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState([]);
@@ -47,7 +49,7 @@ function RecipeDetailed() {
         </ul>
 
         <h2 className="text-2xl font-semibold text-amber-400 mb-2">Instructions</h2>
-        <p className="leading-relaxed">{recipe.instructions || "No instructions available."}</p>
+        {parse(recipe.instructions)}
 
         <div className="mt-6 flex flex-row items-center gap-2">
           <span className="text-amber-300 font-semibold">Price per serving:</span>
